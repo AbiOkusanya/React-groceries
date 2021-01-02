@@ -1,0 +1,13 @@
+#container {
+	background-color: rgb(156, 92, 135);
+	width: 98vw;
+	height: 150vh;
+	display: flex;
+	justify-content: center;
+}
+
+/* #GroceryItem {
+	background-color: rgb(241, 144, 18);
+	width: 30vw;
+	height: 45vh;
+} */
