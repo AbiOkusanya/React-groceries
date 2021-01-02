@@ -1,13 +1,25 @@
 #container {
-	background-color: rgb(156, 92, 135);
+	background-color: rgb(189, 146, 174);
 	width: 98vw;
 	height: 150vh;
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 }
 
-/* #GroceryItem {
-	background-color: rgb(241, 144, 18);
-	width: 30vw;
+#units {
+	background-color: rgb(241, 202, 151);
+	width: 25vw;
 	height: 45vh;
-} */
+}
+
+#item {
+	background-color: rgb(241, 202, 151);
+	width: 25vw;
+	height: 45vh;
+}
+
+#quantity {
+	background-color: rgb(241, 202, 151);
+	width: 25vw;
+	height: 45vh;
+}

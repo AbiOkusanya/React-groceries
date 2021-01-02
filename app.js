@@ -37,13 +37,16 @@ class GroceryUnits extends React.Component{
     
     render() {
         return (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Units:
-              <input type="text" value={this.state.value} onChange={this.handleChange} />        
-              </label>
-            <input type="submit" value="Submit" />
-          </form>
+            <div id= 'units' >
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Units:
+                <input type="text" value={this.state.value} onChange={this.handleChange} />        
+                </label>
+              
+            </form>
+            <p>Units are:{this.state.value}</p>
+            </div>
         );
       } 
     }
@@ -69,13 +72,16 @@ class GroceryQuantity extends React.Component{
     
     render() {
         return (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Quantity:
-              <input type="text" value={this.state.value} onChange={this.handleChange} />        
-              </label>
-            <input type="submit" value="Submit" />
-          </form>
+            <div id= 'quantity'>
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                Quantity:
+                <input type="text" value={this.state.value} onChange={this.handleChange} />        
+                </label>
+              
+            </form>
+            <p>Quantity is :{this.state.value}</p>
+            </div>
         );
       }
     }
@@ -101,14 +107,15 @@ handleSubmit(event) {
 
 render() {
     return (
-        <div>
+        <div id= 'item'>
       <form onSubmit={this.handleSubmit}>
         <label>
           Item:
           <input type="text" value={this.state.value} onChange={this.handleChange} />        
           </label>
-        <input type="submit" value="Submit" />
+        
       </form>
+      <p>Items are:{this.state.value}</p>
       </div>
     );
   }
@@ -141,5 +148,8 @@ class Header extends React.Component {
     <GroceryItem/>
     <GroceryQuantity/>
     <GroceryUnits/>
+    <units/>
+    <quantity/>
+    <item/>
     </div>,
     document.getElementById('container', 'form'));
