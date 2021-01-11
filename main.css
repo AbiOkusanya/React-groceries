@@ -1,25 +1,37 @@
-#container {
+
+body{
 	background-color: rgb(189, 146, 174);
 	width: 98vw;
 	height: 150vh;
-	display: flex;
-	justify-content: space-around;
+	display: inline-block;
 }
 
 #units {
 	background-color: rgb(241, 202, 151);
 	width: 25vw;
-	height: 45vh;
+	height: 15vh;
+	
 }
 
 #item {
 	background-color: rgb(241, 202, 151);
 	width: 25vw;
-	height: 45vh;
+	height: 15vh;
+	
 }
 
 #quantity {
 	background-color: rgb(241, 202, 151);
 	width: 25vw;
-	height: 45vh;
+	height: 15vh;
+}
+#brand {
+	background-color: rgb(241, 202, 151);
+	width: 25vw;
+	height: 15vh;
+}
+#isPurchased {
+	background-color: rgb(241, 202, 151);
+	width: 25vw;
+	height: 15vh;
 }

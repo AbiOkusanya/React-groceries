@@ -1,155 +1,95 @@
 
-// const list=[
-// {
-//     item: '',
-//     // brand: ' ',
-//     quantity: 0,
-//     units: '',
-//     isPurchased: false
-//   }
-
-// const [ items, setItems] = useState([
-//     {item:'item1', quantity:1, isPurchased: false},
-//     {item:'item2', quantity:2, isPurchased: false},
-//     {item:'item3', quantity:3, isPurchased: false},
-// ]); //array
-
-// function displayList(data){ (data, function( index, value ) {
-
-class GroceryUnits extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {value: ''};
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
-    handleChange(event){
-        this.setState({value: event.target.value});
-    }
-    
-    handleSubmit(event) {
-        alert('The units were added' + this.state.value);
-        event.preventDefault();
-    }
-    
-    
-    render() {
-        return (
-            <div id= 'units' >
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Units:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />        
-                </label>
-              
-            </form>
-            <p>Units are:{this.state.value}</p>
-            </div>
-        );
-      } 
-    }
-
-class GroceryQuantity extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {value: ''};
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
-    handleChange(event){
-        this.setState({value: event.target.value});
-    }
-    
-    handleSubmit(event) {
-        alert('The quantity was added' + this.state.value);
-        event.preventDefault();
-    }
-    
-    
-    render() {
-        return (
-            <div id= 'quantity'>
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Quantity:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />        
-                </label>
-              
-            </form>
-            <p>Quantity is :{this.state.value}</p>
-            </div>
-        );
-      }
-    }
-
-class GroceryItem extends React.Component{
-constructor(props){
+class App extends React.Component {
+  constructor(props) {
     super(props);
-    this.state = {value: ''};
 
+    this.state = {
+      products: products,
+      item: ' ',
+      brand: ' ',
+      units: ' ',
+      quantity: 0,
+      isPurchased: false,
+      listItems: []
+    }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-}
+    this.addToCart = this.addToCart.bind(this);
 
-handleChange(event){
-    this.setState({value: event.target.value});
-}
+  } handleChange = (event) => {
+    this.setState({ [event.target.id]: event.target.value })
+  }
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const newProduct = {
+      item: this.state.item,
+      brand: this.state.brand,
+      units: this.state.units,
+      quantity: this.state.quantity,
+      isPurchased: this.state.isPurchased,
 
-handleSubmit(event) {
-    alert('This item was added' + this.state.value);
-    event.preventDefault();
-}
+    }
+    this.setState({
+      products: [newItem, ...this.state.items],
+      item: ' ',
+      brand: ' ',
+      units: ' ',
+      quantity: 0,
+      isPurchased: false,
+    })
+  }
+  addToCart(item) {
+    this.setState({ cartItems: [item, ...this.state.cartItems] });
 
-
-render() {
+  }
+  render() {
     return (
-        <div id= 'item'>
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Item:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />        
-          </label>
-        
-      </form>
-      <p>Items are:{this.state.value}</p>
+      <div className='newItem'>
+        <h1>Grocery List</h1>
+        <form onSubmit={this.handleSubmit} onChange={this.handleChange}
+        >
+          <label htmlFor='items'>Items:</label>
+          <input type="text" value={this.state.items} onChange={this.handleChange} id='item' placeholder='name of item' />
+          <br />
+          <label htmlFor='brand'>Brand:  </label>
+          <input type="text" value={this.state.brand} onChange={this.handleChange} id='brand' placeholder='name of brand' />
+          <br />
+          <label htmlFor='units'> Units:</label>
+          <input type='number' value={this.state.units} onChange={this.handleChange} id='units' />
+          <br />
+          <label htmlFor='quantity'> Quantity:</label>
+          <input type='number' value={this.state.quantity} onChange={this.handleChange} id='quantity' />
+          <input type="submit" value='Add to list' />
+        </form>
       </div>
     );
   }
+
 }
-
-class Header extends React.Component {
-    render() {
-      return (
-        <h1>Grocery List</h1>
-      )
+class GroceryList extends React.Component {
+  constructor(props) {
+    super(props); this.state = {
+      addToCart: false,
     }
+    this.toggleCart = this.toggleCart.bind(this);
+
+  } toggleCart() {
+    this.setState({ inShoppingCart: !this.state.inShoppingCart })
+  } render() {
+    return (
+      <li
+        onClick={() => this.props.handleAdd(this.props.product)}
+      >{this.props.item.name} {this.props.item.price} {this.state.inShoppingCart ? <span>is on the list</span> : ''}</li>
+    )
   }
-
-// class App extends React.Component {
-//     render() {
-//       return (
-//           <div>
-//               <h1>Grocery List</h1>
-//               </div>
-        
-//       )
-//     }
-//   }
-
-  
-
-  ReactDOM.render(
-      <div id= "container">
-    <Header/>
-    <GroceryItem/>
-    <GroceryQuantity/>
-    <GroceryUnits/>
-    <units/>
-    <quantity/>
-    <item/>
-    </div>,
-    document.getElementById('container', 'form'));
+}
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  } render() {
+    return (
+      <li>{this.props.item.name} { this.props.item.price}</li>
+    )
+  }
+}
+ReactDOM.render(<App />, document.getElementById('container'));
